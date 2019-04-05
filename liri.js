@@ -8,6 +8,7 @@ var spotify = new Spotify(keys.spotify);
 var fs = require("fs");
 //Load axios package for OMDB and bandsintown APIs
 var axios = require("axios");
+var moment = require('moment');
 
 //store user inputs
 var action = process.argv[2];
@@ -55,7 +56,7 @@ function concertThis(){
     function(res) {
       console.log("Venue: " + res.data[0].venue.name);
       console.log("Location: " + res.data[0].venue.city + ", " +res.data[0].venue.region);
-      console.log("Date of Event: " + res.data[0].datetime);
+      console.log("Date of Event: " + moment(res.data[0].datetime).format('L'));
     })
     .catch(function(error){
       console.log(error);
